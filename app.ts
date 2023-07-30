@@ -1,2 +1,120 @@
-console.log("Hello, world! Love, TypeScript")
-console.log("Hello, world! Love, TypeScript")
+// Define an enum for the possible choices
+enum HandChoice {
+  Rock = 'Group 8 Copy 2.svg',
+  Paper = 'Group 8.svg',
+  Scissors = 'Group 8 Copy.svg',
+}
+
+let computerScore = 0
+let userScore = 0;
+let userChoice: HandChoice 
+let computerChoice: HandChoice 
+
+// Function to randomly select computer's hand
+function getComputerHand(): HandChoice {
+  const choices: HandChoice[] = [HandChoice.Rock, HandChoice.Paper, HandChoice.Scissors];
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  return choices[randomIndex];
+}
+
+// Function to determine the winner and update scores
+function determineWinner() {
+  if (userChoice === computerChoice) {
+    // It's a draw
+    return 'draw';
+  } else if (
+    (userChoice === HandChoice.Rock && computerChoice === HandChoice.Scissors) ||
+    (userChoice === HandChoice.Paper && computerChoice === HandChoice.Rock) ||
+    (userChoice === HandChoice.Scissors && computerChoice === HandChoice.Paper)
+  ) {
+    // User wins
+    userScore++;
+    return 'user';
+  } else {
+    // Computer wins
+    computerScore++;
+    return 'computer';
+  }
+}
+
+
+
+// Function to update the game UI
+function updateUI() {
+  const userPickImage = document.getElementById('userPickImage') as HTMLImageElement;
+  const computerPickImage = document.getElementById('computerPickImage') as HTMLImageElement;
+  const userScoreElement = document.querySelector('.score h1') as HTMLHeadingElement;
+
+  userPickImage.src = `images/${userChoice}`;
+  computerPickImage.src = `images/${computerChoice}`;
+  userScoreElement.textContent = userScore.toString();
+}
+
+ const referee = document.querySelector('.referee h1') as HTMLHeadingElement;
+ const gameboard = document.querySelector('.gameboard') as HTMLElement;
+const contest = document.querySelector('.contest') as HTMLElement;
+
+// Function to handle user's hand selection
+function pickUserHand(choice: HandChoice) {
+  userChoice = choice;
+  computerChoice = getComputerHand();
+  const winner = determineWinner();
+
+  // Display the results
+ 
+  referee.textContent = winner === 'draw' ? 'It\'s a draw' : `You ${winner === 'user' ? 'Win' : 'Lose'}`;
+
+  // Show the gameboard
+ 
+  gameboard.style.display = 'none';
+
+  // Show the contest section
+  
+  contest.style.display = 'flex';
+
+  // Update the UI
+  updateUI();
+}
+
+// Function to restart the game
+function restartGame() {
+  // Hide the contest section
+  const contest = document.querySelector('.contest') as HTMLElement;
+  contest.style.display = 'none';
+
+  // Show the gameboard
+  const gameboard = document.querySelector('.gameboard') as HTMLElement;
+  gameboard.style.display = 'flex';
+}
+
+const rulesPopup = document.querySelector('.rules-popup') as HTMLElement;
+const rulesButton = document.querySelector('.rules') as HTMLElement;
+const closeButton = document.querySelector('.header img') as HTMLElement;
+
+// Function to show the rules popup
+function showRulesPopup() {
+  rulesPopup.style.display = 'flex';
+  gameboard.style.pointerEvents = 'none';
+  rulesButton.style.pointerEvents = 'none';
+}
+
+// Function to close the rules popup
+function closeRulesPopup() {
+  rulesPopup.style.display = 'none';
+  gameboard.style.pointerEvents = 'auto';
+  rulesButton.style.pointerEvents = 'auto';
+}
+
+// Event listener for the rules button
+rulesButton.addEventListener('click', showRulesPopup);
+closeButton.addEventListener('click', closeRulesPopup);
+
+
+// Event listeners for hand selections
+const rockBtn = document.querySelector('.rock img');
+const paperBtn = document.querySelector('.paper img');
+const scissorsBtn = document.querySelector('.scissors img');
+
+rockBtn?.addEventListener('click', () => pickUserHand(HandChoice.Rock));
+paperBtn?.addEventListener('click', () => pickUserHand(HandChoice.Paper));
+scissorsBtn?.addEventListener('click', () => pickUserHand(HandChoice.Scissors));
