@@ -38,6 +38,15 @@
   margin: 30px;
 }
 
+.title .bonus {
+  position: absolute;
+  width: 130px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  top: 7%
+}
+
 .score {
   width: 150px;
   height: 114px;
@@ -92,6 +101,54 @@ img{
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.advance-gameboard {
+  display: none;
+  width: 470px;
+  height: 430px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  background-image: url('/images/bg-pentagon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.advance-gameboard img{
+  width: 120px;
+  cursor: pointer;
+}
+
+.advance-gameboard .rock img{
+  position: absolute;
+  bottom: 4%;
+  left: 53%;
+}
+
+.advance-gameboard .lizard{
+  position: absolute;
+  bottom: 3.5%;
+  left: 39%;
+}
+
+.advance-gameboard .paper{
+  position: absolute;
+  bottom: 19%;
+  left: 56%;
+}
+
+.advance-gameboard .scissors{
+  position: absolute;
+  top: 31%;
+  left: 41%;
+}
+
+.advance-gameboard .spock{
+  position: absolute;
+  top: 50%;
+  left: 35%;
+}
+
 
 .scissors {
   margin-left: 60px
@@ -193,7 +250,28 @@ img{
   cursor: pointer;
 }
 
-button {
+.advance {
+  position: absolute;
+  top: 90%;
+  left: 2%;
+  background-color: transparent;
+  width: 228px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #FFF;
+  color: #FFF;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: normal;
+  letter-spacing: 2.5px;
+  cursor: pointer;
+}
+
+.rules {
+  display: flex;
   position: absolute;
   top: 90%;
   left: 90%;
@@ -210,11 +288,104 @@ button {
   line-height: normal;
   letter-spacing: 2.5px;
   cursor: pointer;
+  align-items: center;
+  justify-content: center;
 }
 
-button:hover {
+.advance-mod {
+  display: none;
+  position: absolute;
+  top: 90%;
+  left: 90%;
+  background-color: transparent;
+  width: 128px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #FFF;
+  color: #FFF;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 2.5px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.rules:hover {
   background: linear-gradient(0deg, #F3F3F3 0%, #FFF 100%);
   color: #3B4262;
+}
+
+.advance-mod:hover {
+  background: linear-gradient(0deg, #F3F3F3 0%, #FFF 100%);
+  color: #3B4262;
+}
+
+.advance-rules{
+  position: absolute;
+  display: none;
+  width: 400px;
+  height: 461px;
+  top: 160px;
+  border-radius: 8px;
+  background: #FFF;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.20);
+  justify-content: center;
+  align-items: center;
+  z-index: 10
+}
+
+.advance-rules img{
+  width: 336px;
+  margin-top: 60px;
+}
+
+.advance-rules .head {
+  margin-top: -370px;
+}
+
+.advance-rules .head img{
+  display: flex;
+  width: 19.092px;
+  height: 19.092px;
+  fill: #3B4262;
+  margin-top: -1px;
+  cursor: pointer;
+}
+
+.advance:hover {
+  background: linear-gradient(0deg, #F3F3F3 0%, #FFF 100%);
+  color: #3B4262;
+}
+
+.heading{
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 350px;
+  height: 55px;
+  margin-top: -380px;
+}
+
+.heading h1{
+  color: #3B4262;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 32px; 
+}
+
+.heading img{
+  display: flex;
+  width: 19.092px;
+  height: 19.092px;
+  fill: #3B4262;
+  margin-top: -1px;
+  cursor: pointer;
 }
 
 

@@ -30,7 +30,7 @@ function determineWinner() {
     }
     else {
         // Computer wins
-        computerScore++;
+        computerScore = 1 - userScore;
         return 'computer';
     }
 }
@@ -43,19 +43,19 @@ function updateUI() {
     computerPickImage.src = "images/".concat(computerChoice);
     userScoreElement.textContent = userScore.toString();
 }
-var referee = document.querySelector('.referee h1');
-var gameboard = document.querySelector('.gameboard');
-var contest = document.querySelector('.contest');
 // Function to handle user's hand selection
 function pickUserHand(choice) {
     userChoice = choice;
     computerChoice = getComputerHand();
     var winner = determineWinner();
     // Display the results
+    var referee = document.querySelector('.referee h1');
     referee.textContent = winner === 'draw' ? 'It\'s a draw' : "You ".concat(winner === 'user' ? 'Win' : 'Lose');
     // Show the gameboard
+    var gameboard = document.querySelector('.gameboard');
     gameboard.style.display = 'none';
     // Show the contest section
+    var contest = document.querySelector('.contest');
     contest.style.display = 'flex';
     // Update the UI
     updateUI();
@@ -66,24 +66,77 @@ function restartGame() {
     var contest = document.querySelector('.contest');
     contest.style.display = 'none';
     // Show the gameboard
-    var gameboard = document.querySelector('.gameboard');
     gameboard.style.display = 'flex';
 }
+var gameboard = document.querySelector('.gameboard');
+var advanceGameboard = document.querySelector('.advance-gameboard');
 var rulesPopup = document.querySelector('.rules-popup');
+var advanceRules = document.querySelector('.advance-rules');
 var rulesButton = document.querySelector('.rules');
 var closeButton = document.querySelector('.header img');
+var closeRulesButton = document.querySelector('.heading img');
+var advanceButton = document.querySelector('.advance');
+var title = document.querySelector('.title img');
+var bonus = document.querySelector('.title .bonus');
+var advanceMod = document.querySelector('.advance-mod');
 // Function to show the rules popup
 function showRulesPopup() {
     rulesPopup.style.display = 'flex';
     gameboard.style.pointerEvents = 'none';
     rulesButton.style.pointerEvents = 'none';
+    advanceButton.style.pointerEvents = 'none';
 }
 // Function to close the rules popup
 function closeRulesPopup() {
     rulesPopup.style.display = 'none';
     gameboard.style.pointerEvents = 'auto';
     rulesButton.style.pointerEvents = 'auto';
+    advanceButton.style.pointerEvents = 'auto';
 }
+var change = true;
+// Function to show the Advance rules popup
+function showAdvanceModePopup() {
+    if (change) {
+        rulesPopup.style.display = 'none';
+        rulesButton.style.display = 'none';
+        advanceMod.style.display = 'flex';
+        gameboard.style.display = 'none';
+        advanceGameboard.style.display = 'flex';
+        title.style.display = 'none';
+        bonus.style.display = 'flex';
+        rulesButton.style.pointerEvents = 'none';
+        advanceButton.textContent = 'DEMO MODE';
+        change = false;
+    }
+    else {
+        rulesButton.style.display = 'flex';
+        advanceMod.style.display = 'none';
+        gameboard.style.display = 'flex';
+        advanceGameboard.style.display = 'none';
+        title.style.display = 'flex';
+        bonus.style.display = 'none';
+        rulesButton.style.pointerEvents = 'auto';
+        advanceButton.style.pointerEvents = 'auto';
+        change = true;
+        advanceButton.textContent = 'ADVANCE MODE';
+    }
+}
+function showAdvanceRulesPopup() {
+    advanceRules.style.display = 'flex';
+    gameboard.style.pointerEvents = 'none';
+    advanceButton.style.pointerEvents = 'none';
+    advanceMod.style.pointerEvents = 'none';
+}
+function closeAdvanceRules() {
+    advanceRules.style.display = 'none';
+    gameboard.style.pointerEvents = 'auto';
+    advanceMod.style.pointerEvents = 'auto';
+    advanceButton.style.pointerEvents = 'auto';
+}
+// Event listener for the Advance Mode button
+advanceButton.addEventListener('click', showAdvanceModePopup);
+advanceMod.addEventListener('click', showAdvanceRulesPopup);
+closeRulesButton.addEventListener('click', closeAdvanceRules);
 // Event listener for the rules button
 rulesButton.addEventListener('click', showRulesPopup);
 closeButton.addEventListener('click', closeRulesPopup);

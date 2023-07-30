@@ -17,6 +17,7 @@
             <div class="scoreboard">
                 <div class="title">
                     <img src="images/logo.svg"  alt="logo">
+                    <img class="bonus" src="images/logo-bonus.svg"  alt="logo">
                 </div>
                 <div class="score">
                     <p>SCORE</p>
@@ -46,6 +47,44 @@
                     <img src="images/Oval Copy 8.svg" alt="Oval">
                 </div>
             </div>
+
+          <!--ADVANCE GAMEBOARD-->  
+
+            <div class="advance-gameboard">
+                <div class="scissors">
+                    <img src="images/icon-scissors.svg" onclick="pickUserHand('paper')" alt="Paper">
+                </div>
+                <div class="oval-1">
+                    <!--<img src="images/Oval Copy 8.svg" alt="Oval">-->
+                </div> 
+
+                <div class="paper">
+                    <img src="images/icon-paper.svg" onclick="pickUserHand('scissors')" alt="Scissors"> 
+                </div>
+                <div class="oval-2">
+                    <!--<img src="images/Oval Copy 8.svg" alt="Oval">-->
+                </div>
+
+                <div class="rock">
+                    <img src="images/icon-rock.svg" onclick="pickUserHand('rock')" alt="Rock">
+                </div>
+                <div class="oval">
+                    <!--<img src="images/Oval Copy 8.svg" alt="Oval">-->
+                </div>
+                <div class="lizard">
+                    <img src="images/icon-lizard.svg" onclick="pickUserHand('Lizard')" alt="Lizard"> 
+                </div>
+                <div class="oval-2">
+                    <!--<img src="images/Oval Copy 8.svg" alt="Oval">-->
+                </div>
+
+                <div class="spock">
+                    <img src="images/icon-spock.svg" onclick="pickUserHand('spock')" alt="Spock">
+                </div>
+                <div class="oval">
+                    <!--<img src="images/Oval Copy 8.svg" alt="Oval">-->
+                </div>
+            </div>
             
             <div class="rules-popup">
                 <div class="header">
@@ -55,6 +94,17 @@
                 <img  src="images/image-rules.svg" alt="">
             </div>
 
+            <div class="advance-rules">
+                <div class="heading">
+                    <h1>RULES</h1>
+                    <img src="images/icon-close.svg" alt="Close">
+                </div>
+                <img  src="images/image-rules-bonus.svg" alt="">
+            </div>
+
+            <button class="advance">Advance Mode</button>
+
+            <button class="advance-mod">Rules</button>
             <button class="rules">Rules</button>
         
         
@@ -88,5 +138,6 @@
     </div>
 
     <script src="app.js"></script>
+    <script src="advance.js"></script>
 </body>
 </html>
