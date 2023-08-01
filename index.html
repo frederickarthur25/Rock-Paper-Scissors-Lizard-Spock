@@ -21,7 +21,7 @@
                 </div>
                 <div class="score">
                     <p>SCORE</p>
-                    <h1>0</h1>
+                    <h1 id="userScore">0</h1>
                 </div>
             </div>
 
@@ -51,41 +51,54 @@
           <!--ADVANCE GAMEBOARD-->  
 
             <div class="advance-gameboard">
-                <div class="scissors">
-                    <img src="images/icon-scissors.svg" onclick="pickUserHand('paper')" alt="Paper">
+                <div class="scissor">
+                    <img src="images/icon-scissors.svg" onclick="pickUserHands('scissor')" alt="Scissor">
                 </div>
                 <div class="oval-1">
-                    <!--<img src="images/Oval Copy 8.svg" alt="Oval">-->
+                    <img src="images/Oval Copy 8.svg" alt="Oval">
                 </div> 
 
-                <div class="paper">
-                    <img src="images/icon-paper.svg" onclick="pickUserHand('scissors')" alt="Scissors"> 
+                <div class="papers">
+                    <img src="images/icon-paper.svg" onclick="pickUserHands('papers')" alt="Papers"> 
                 </div>
                 <div class="oval-2">
-                    <!--<img src="images/Oval Copy 8.svg" alt="Oval">-->
+                    <img src="images/Oval Copy 8.svg" alt="Oval">
                 </div>
 
-                <div class="rock">
-                    <img src="images/icon-rock.svg" onclick="pickUserHand('rock')" alt="Rock">
+                <div class="rocks">
+                    <img src="images/icon-rock.svg" onclick="pickUserHands('rocks')" alt="Rocks">
                 </div>
-                <div class="oval">
-                    <!--<img src="images/Oval Copy 8.svg" alt="Oval">-->
+                <div class="oval-3">
+                    <img src="images/Oval Copy 8.svg" alt="Oval">
                 </div>
                 <div class="lizard">
-                    <img src="images/icon-lizard.svg" onclick="pickUserHand('Lizard')" alt="Lizard"> 
+                    <img src="images/icon-lizard.svg" onclick="pickUserHands('Lizard')" alt="Lizard"> 
                 </div>
-                <div class="oval-2">
-                    <!--<img src="images/Oval Copy 8.svg" alt="Oval">-->
+                <div class="oval-4">
+                    <img src="images/Oval Copy 8.svg" alt="Oval">
                 </div>
 
                 <div class="spock">
-                    <img src="images/icon-spock.svg" onclick="pickUserHand('spock')" alt="Spock">
+                    <img src="images/icon-spock.svg" onclick="pickUserHands('spock')" alt="Spock">
                 </div>
-                <div class="oval">
-                    <!--<img src="images/Oval Copy 8.svg" alt="Oval">-->
+                <div class="oval-5">
+                    <img src="images/Oval Copy 8.svg" alt="Oval">
                 </div>
             </div>
             
+            <div class="win-style">
+                <div class="win-style-1"></div>
+                <div class="win-style-2"></div>
+                <div class="win-style-3"></div>
+            </div>
+            
+            <div class="winstyle">
+                <div class="winstyle-1"></div>
+                <div class="winstyle-2"></div>
+                <div class="winstyle-3"></div>
+            </div>
+            
+
             <div class="rules-popup">
                 <div class="header">
                     <h1>RULES</h1>
@@ -113,7 +126,7 @@
             <div class="userhand">
                 <h1>YOU PICKED</h1>
                 <div class="handImageContainer">
-                    <img id="userPickImage" src="images/Group 8 Copy 2.svg" alt="">
+                    <img id="userPickImage" src="" alt="">
                 </div>
             </div>
 
@@ -125,7 +138,7 @@
             <div class="houseHand">
                 <h1>THE HOUSE PICKED</h1>
                 <div class="handImageContainer">
-                    <img id="computerPickImage" src="images/Group 8.svg" alt="">
+                    <img id="computerPickImage" src="" alt="">
                 </div>
 
             </div>
