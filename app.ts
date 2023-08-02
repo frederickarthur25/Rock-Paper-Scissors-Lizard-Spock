@@ -1,105 +1,3 @@
-// Define an enum for the possible choices
-enum HandChoice {
-  Rock = 'Group 8 Copy 2.svg',
-  Paper = 'Group 8.svg',
-  Scissors = 'Group 8 Copy.svg',
-}
-enum HandChoices {
-  Rocks = 'icon-rock.svg',
-  Papers = 'icon-paper.svg',
-  Scissor = 'icon-scissors.svg',
-  Lizard = 'icon-lizard.svg',
-  Spock = 'icon-spock.svg',
-}
-
-let userScore: number = 0;
-let usersScore: number = 0;
-let userChoice: HandChoice;
-let computerChoice: HandChoice;
-let userChoices: HandChoices;
-let computerChoices: HandChoices;
-
-// Function to randomly select computer's hand in Basic Mode
-function getComputerHand(): HandChoice {
-  const choices: HandChoice[] = [
-    HandChoice.Rock,
-    HandChoice.Paper,
-    HandChoice.Scissors,
-  ];
-  const randomIndex = Math.floor(Math.random() * choices.length);
-  return choices[randomIndex];
-}
-
-// Function to randomly select computer's hand in Advance Mode
-function getComputersHand(): HandChoices {
-  const choice: HandChoices[] = [
-    HandChoices.Rocks,
-    HandChoices.Papers,
-    HandChoices.Scissor,
-  ];
-  const randomIndex = Math.floor(Math.random() * choice.length);
-  return choice[randomIndex];
-}
-
-
-
-// Function to determine the winner and update scores in Basic Mode
-function determineWinner() {
-  if (userChoice === computerChoice) {
-    // It's a draw
-    clearWinStyles();
-    return 'draw';
-  } if (
-    (userChoice === HandChoice.Rock && computerChoice === HandChoice.Scissors) ||
-    (userChoice === HandChoice.Paper && computerChoice === HandChoice.Rock) ||
-    (userChoice === HandChoice.Scissors && computerChoice === HandChoice.Paper)
-  ) {
-    // User wins
-    userScore++;
-    applyWinStyles();
-    return 'user';
-  } else {
-    // Computer wins
-    applyHouseWinStyles();
-
-    return 'house';
-  }
-}
-
-
-
-// Function to determine the winner and update scores of Advance Mode
-function determineWinners() {
-  if (userChoices === computerChoices) {
-    // It's a draw
-    clearWinStyles();
-    return 'draw';
-  }if (
-    (userChoices === HandChoices.Rocks &&
-      (computerChoices === HandChoices.Scissor || computerChoices === HandChoices.Lizard)) ||
-    (userChoices === HandChoices.Papers &&
-      (computerChoices === HandChoices.Rocks || computerChoices === HandChoices.Spock)) ||
-    (userChoices === HandChoices.Scissor &&
-      (computerChoices === HandChoices.Papers || computerChoices === HandChoices.Lizard)) ||
-    (userChoices === HandChoices.Lizard &&
-      (computerChoices === HandChoices.Papers || computerChoices === HandChoices.Spock)) ||
-    (userChoices === HandChoices.Spock &&
-      (computerChoices === HandChoices.Rocks || computerChoices === HandChoices.Scissor))
-  ) {
-    // User wins
-    usersScore++;
-    applyWinStyles();
-    return 'user';
-  } else {
-    // Computer wins
-    applyHouseWinStyles();
-   
-    return 'house';
-  }
-}
-
-
-
 //Pulling Elements from the DOM
 const advanceRules = document.querySelector('.advance-rules') as HTMLElement;
 const gameboard = document.querySelector('.gameboard') as HTMLElement;
@@ -122,56 +20,62 @@ const userPickImage = document.getElementById('userPickImage') as HTMLImageEleme
 const computerPickImage = document.getElementById('computerPickImage') as HTMLImageElement;
 
 
-// Function to apply win styles
-function applyWinStyles() {
-  // Apply win styles for user hand win
-  winStyle1.style.display = 'none';
-  winStyle2.style.display = 'none';
-  winStyle3.style.display = 'none';
-
-  // Hide win styles for house hand win
-  winStyle11.style.display = 'block';
-  winStyle22.style.display = 'block';
-  winStyle33.style.display = 'block';
+// Define an enum for the possible choices
+enum HandChoice {
+  Rock = 'Group 8 Copy 2.svg',
+  Paper = 'Group 8.svg',
+  Scissors = 'Group 8 Copy.svg',
+}
+enum HandChoices {
+  Rocks = 'icon-rock.svg',
+  Papers = 'icon-paper.svg',
+  Scissor = 'icon-scissors.svg',
+  Lizard = 'icon-lizard.svg',
+  Spock = 'icon-spock.svg',
 }
 
-// Function to apply win styles for house hand win
-function applyHouseWinStyles() {
-  // Apply win styles for house hand win
-  winStyle11.style.display = 'none';
-  winStyle22.style.display = 'none';
-  winStyle33.style.display = 'none';
+let userScore: number = parseInt(localStorage.getItem('userScore') || '0');
+let usersScore: number = parseInt(localStorage.getItem('userScore') || '0');
+let userChoice: HandChoice;
+let computerChoice: HandChoice;
+let userChoices: HandChoices;
+let computerChoices: HandChoices;
 
-  // Hide win styles for user hand win
-  winStyle1.style.display = 'block';
-  winStyle2.style.display = 'block';
-  winStyle3.style.display = 'block';
+// Function to randomly select computer's hand in Basic Mode
+function getComputerHand(): HandChoice {
+  const choices: HandChoice[] = [
+    HandChoice.Rock,
+    HandChoice.Paper,
+    HandChoice.Scissors,
+  ];
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  return choices[randomIndex];
 }
 
-// Function to clear all win styles
-function clearWinStyles() {
-  winStyle1.style.display = 'none';
-  winStyle2.style.display = 'none';
-  winStyle3.style.display = 'none';
-  winStyle11.style.display = 'none';
-  winStyle22.style.display = 'none';
-  winStyle33.style.display = 'none';
+
+// Function to determine the winner and update scores in Basic Mode
+function determineWinner() {
+  if (userChoice === computerChoice) {
+    // It's a draw
+    clearWinStyles();
+    return 'draw';
+  } else if (
+    (userChoice === HandChoice.Rock && computerChoice === HandChoice.Scissors) ||
+    (userChoice === HandChoice.Paper && computerChoice === HandChoice.Rock) ||
+    (userChoice === HandChoice.Scissors && computerChoice === HandChoice.Paper)
+  ) {
+    // User wins
+    userScore++;
+    localStorage.setItem('userScore', userScore.toString());
+    applyWinStyles();
+    return 'hand';
+  } else {
+    // Computer wins
+    applyHouseWinStyles();
+    return 'house';
+  }
 }
 
-// Function to update the game UI Basic Mode
-function updateUI() {
-  userPickImage.src = `images/${userChoice}`;
-  computerPickImage.src = `images/${computerChoice}`;
-  userScoreElement.textContent = userScore.toString();
-}
-
-  
-// Function to update the game UI for Advance Mode
-function updateUIs() {
-  userPickImage.src = `images/${userChoices}`;
-  computerPickImage.src = `images/${computerChoices}`;
-  userScoreElement.textContent = usersScore.toString();
-}
 
 // Function to handle user's hand selection for Basic Mode
 function pickUserHand(choices: HandChoice) {
@@ -181,10 +85,9 @@ function pickUserHand(choices: HandChoice) {
 
   // Display the results
   const referee = document.querySelector('.referee h1') as HTMLHeadingElement;
-  referee.textContent =
-  winner === 'draw' ? "It's a draw" : `You ${winner === 'user' ? 'Win' : 'Lose'}`;
+  referee.textContent = winner === 'draw' ? "It's a draw" : `You ${winner === 'hand' ? 'Win' : 'Lose'}`;
   
-  // Show the gameboard
+  // Hide the gameboard
   const gameboard = document.querySelector('.gameboard') as HTMLElement;
   gameboard.style.display = 'none';
   advanceGameboard.style.display = 'none'
@@ -193,54 +96,26 @@ function pickUserHand(choices: HandChoice) {
   const contest = document.querySelector('.contest') as HTMLElement;
   contest.style.display = 'flex';
 
+ 
+
   // Update the UI
-  updateUI();
-}
-
-// Function to handle user's hand selection for Advance Mode
-function pickUserHands(choice: HandChoices) {
-  userChoices = choice;
-  computerChoices = getComputersHand();
-  const winners = determineWinners();
-
-  // Display the results
-  const referee = document.querySelector('.referee h1') as HTMLHeadingElement;
-  referee.textContent =
-  winners === 'draw' ? "It's a draw" : `You ${winners === 'user' ? 'Win' : 'Lose'}`;
-    // Show the win style for the winner, and hide it for the loser
   
-  // Show the gameboard
-  const gameboard = document.querySelector('.gameboard') as HTMLElement;
-  gameboard.style.display = 'none';
-  advanceGameboard.style.display = 'none'
 
-  // Show the contest section
-  const contest = document.querySelector('.contest') as HTMLElement;
-  contest.style.display = 'flex';
+  // Display the results in the referee section
+  referee.style.display = 'flex';
+  referee.textContent =
+    winner === 'draw' ? "It's a draw" : `You ${winner === 'hand' ? 'Win' : 'Lose'}`;
 
-  // Update the UI
-  updateUIs();
+    updateUI();
+
 }
 
-function restartGame() {
-  // Hide the contest section
-  const contest = document.querySelector('.contest') as HTMLElement;
-  contest.style.display = 'none';
 
-  // Show the appropriate game mode section
-  const basicGameboard = document.querySelector('.gameboard') as HTMLElement;
-  const advanceGameboard = document.querySelector('.advance-gameboard') as HTMLElement;
-
-  // Check the current game mode
-  const advanceButton = document.querySelector('.advance') as HTMLElement;
-  const isAdvanceMode = advanceButton.textContent === 'BASIC MODE';
-
-  if (isAdvanceMode) {
-    advanceGameboard.style.display = 'flex';
-  } else {
-    basicGameboard.style.display = 'flex';
-  }
-  clearWinStyles();
+// Function to update the game UI Basic Mode
+function updateUI() {
+  userPickImage.src = `images/${userChoice}`;
+  computerPickImage.src = `images/${computerChoice}`;
+  userScoreElement.textContent = userScore.toString();
 }
 
 
@@ -283,6 +158,140 @@ rulesButton?.addEventListener('click', showRulesPopup);
 const closeButton = document.querySelector('.header img');
 closeButton?.addEventListener('click', closeRulesPopup);
 
+// Function to update the game UI for Advance Mode
+function updateUIs() {
+  userPickImage.src = `images/${userChoices}`;
+  computerPickImage.src = `images/${computerChoices}`;
+  userScoreElement.textContent = usersScore.toString();
+}
+
+function restartGame() {
+  // Hide the contest section
+  const contest = document.querySelector('.contest') as HTMLElement;
+  contest.style.display = 'none';
+
+  // Show the appropriate game mode section
+  const basicGameboard = document.querySelector('.gameboard') as HTMLElement;
+  const advanceGameboard = document.querySelector('.advance-gameboard') as HTMLElement;
+
+  // Check the current game mode
+  const advanceButton = document.querySelector('.advance') as HTMLElement;
+  const isAdvanceMode = advanceButton.textContent === 'BASIC MODE';
+
+  if (isAdvanceMode) {
+    advanceGameboard.style.display = 'flex';
+  } else {
+    basicGameboard.style.display = 'flex';
+  }
+  clearWinStyles();
+}
+
+
+// Function to apply win styles
+function applyWinStyles() {
+  // Apply win styles for user hand win
+  winStyle1.style.display = 'none';
+  winStyle2.style.display = 'none';
+  winStyle3.style.display = 'none';
+
+  // Hide win styles for house hand win
+  winStyle11.style.display = 'block';
+  winStyle22.style.display = 'block';
+  winStyle33.style.display = 'block';
+}
+
+// Function to apply win styles for house hand win
+function applyHouseWinStyles() {
+  // Apply win styles for house hand win
+  winStyle11.style.display = 'none';
+  winStyle22.style.display = 'none';
+  winStyle33.style.display = 'none';
+
+  // Hide win styles for user hand win
+  winStyle1.style.display = 'block';
+  winStyle2.style.display = 'block';
+  winStyle3.style.display = 'block';
+}
+
+// Function to clear all win styles
+function clearWinStyles() {
+  winStyle1.style.display = 'none';
+  winStyle2.style.display = 'none';
+  winStyle3.style.display = 'none';
+  winStyle11.style.display = 'none';
+  winStyle22.style.display = 'none';
+  winStyle33.style.display = 'none';
+}
+
+
+
+
+// Function to randomly select computer's hand in Advance Mode
+function getComputersHand(): HandChoices {
+  const choice: HandChoices[] = [
+    HandChoices.Rocks,
+    HandChoices.Papers,
+    HandChoices.Scissor,
+  ];
+  const randomIndex = Math.floor(Math.random() * choice.length);
+  return choice[randomIndex];
+}
+
+// Function to determine the winner and update scores of Advance Mode
+function determineWinners() {
+  if (userChoices === computerChoices) {
+    // It's a draw
+    clearWinStyles();
+    return 'draw';
+  }if (
+    (userChoices === HandChoices.Rocks &&
+      (computerChoices === HandChoices.Scissor || computerChoices === HandChoices.Lizard)) ||
+    (userChoices === HandChoices.Papers &&
+      (computerChoices === HandChoices.Rocks || computerChoices === HandChoices.Spock)) ||
+    (userChoices === HandChoices.Scissor &&
+      (computerChoices === HandChoices.Papers || computerChoices === HandChoices.Lizard)) ||
+    (userChoices === HandChoices.Lizard &&
+      (computerChoices === HandChoices.Papers || computerChoices === HandChoices.Spock)) ||
+    (userChoices === HandChoices.Spock &&
+      (computerChoices === HandChoices.Rocks || computerChoices === HandChoices.Scissor))
+  ) {
+    // User wins
+    usersScore++;
+    localStorage.setItem('userScore', userScore.toString());
+    applyWinStyles();
+    return 'user';
+  } else {
+    // Computer wins
+    applyHouseWinStyles();
+   
+    return 'house';
+  }
+}
+
+// Function to handle user's hand selection for Advance Mode
+function pickUserHands(choice: HandChoices) {
+  userChoices = choice;
+  computerChoices = getComputersHand();
+  const winners = determineWinners();
+
+  // Display the results
+  const referee = document.querySelector('.referee h1') as HTMLHeadingElement;
+  referee.textContent =
+  winners === 'draw' ? "It's a draw" : `You ${winners === 'user' ? 'Win' : 'Lose'}`;
+    // Show the win style for the winner, and hide it for the loser
+  
+  // Show the gameboard
+  const gameboard = document.querySelector('.gameboard') as HTMLElement;
+  gameboard.style.display = 'none';
+  advanceGameboard.style.display = 'none'
+
+  // Show the contest section
+  const contest = document.querySelector('.contest') as HTMLElement;
+  contest.style.display = 'flex';
+
+  // Update the UI
+  updateUIs();
+}
 
 
 // Function to show the advance rules popup
@@ -331,6 +340,7 @@ advanceButton?.addEventListener('click', () => {
     contest.style.display = 'none';
     advanceButton.textContent = 'BASIC MODE'; // Update the text content of the button
   }
+  clearWinStyles();
 });
 
 
