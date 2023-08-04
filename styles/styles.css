@@ -11,6 +11,7 @@
     font-family: "Barlow Semi Condensed", sans-serif;
     overflow: hidden;
   }
+
 .wrapper {
     max-width: 1366px;
     height: 100vh;
@@ -340,6 +341,7 @@ img{
 }
 
 .advance {
+  display: none;
   position: absolute;
   top: 90%;
   left: 2%;
@@ -480,7 +482,7 @@ img{
 
 .contest {
   width: 950px;
-  display: flex;
+  display: none;
   margin-top: 50px;
 }
 
@@ -550,8 +552,13 @@ img{
 
 .attribution { 
   display: none;
-  font-size: 11px; 
+  font-size: 14px; 
   text-align: center; 
+  color: white
+}
+
+a {
+  margin-left: 5px;
 }
 
 .attribution a { 
@@ -635,4 +642,199 @@ img{
   border-radius: 50%;
   background-color: #979797;
   opacity: 0.03;
+}
+
+@media only screen and (max-width: 375px) {
+.wrapper {
+    max-width: 375px;
+}
+
+.scoreboard {
+  width: 311px;
+  height: 96px;
+  margin-top: 15px;  
+}
+
+.score {
+  width: 80px;
+  height: 72px;
+}
+
+.score p {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 2.5px;
+  margin-top: 20px;
+}
+
+.score h1 {
+  color: #565468;
+  font-size: 40px;
+  font-weight: 700;
+  margin-top: -10px;
+}
+
+.title img {
+  width: 83px;
+  height: 48px;
+}
+
+.rock, .paper, .scissors {
+  width: 130px;
+  height: 133px;
+}
+
+.paper{
+  margin-left: -20px;
+}
+
+.scissors{
+  margin-left: 70px;
+}
+
+img{
+  width: 130px;
+  cursor: pointer;
+}
+
+.oval-2 img {
+  margin-top: -3.6%;
+  margin-left: -142px;
+  width: 155px;
+}
+
+.oval-1 img {
+  top: 22.1%;
+  left: 2.7%;
+  width: 155px;
+}
+
+.rock {
+  margin-left: 0px
+}
+
+.oval img {
+  margin-top: -3.1%;
+  margin-left: -144px;
+  width: 155px;
+}
+
+.gameboard {
+  display: flex;
+  width: 390px;
+  height: 330px;
+  margin-top: 25px;
+  margin-left: 20px;
+  background-size: 200px;
+}
+
+.rules {
+  top: 90%;
+  left: 35%;
+}
+
+.advance-mod {
+  top: 90%;
+  left: 40%;
+}
+
+.rules-popup {
+  width: 375px;
+  height: 100vh;
+  top: 0px;
+}
+
+.header h1{
+  position: absolute;
+  top: -20%;
+  left: 33%
+}
+
+.header img{
+ position: absolute;
+ top: 420px;
+ left: 50%
+}
+
+.advance {
+  display: flex;
+  top: 85%;
+  left: 35%;
+  width: 128px;
+  height: 20px;
+  border-radius: 8px;
+  border: 1px solid #FFF;
+  color: #FFF;
+  text-align: center;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+}
+
+.contest {
+  width: 350px;
+  display: flex;
+  flex-direction: row;
+  margin-top: -50px;
+}
+
+.contest img{
+  width: 126px;
+  height: 126px;
+}
+
+.contest h1 {
+color: #FFF;
+text-align: center;
+text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.20);
+font-family: Barlow Semi Condensed;
+font-size: 15px;
+font-style: normal;
+font-weight: 700;
+line-height: 32px; /* 213.333% */
+letter-spacing: 1.875px;
+}
+
+.referee {
+  position: absolute;
+  top: 70%;
+  left: 16%;
+}
+
+.referee h1 {
+  position: absolute;
+  margin-bottom: 32px;
+  margin-left: -92px;
+  font-size: 42px;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: normal;
+  width: 300px;
+}
+
+.newGame {
+  padding: 10px 24px;
+  margin-left: 50px;
+}
+
+.houseHand {
+  margin-top: -5px;
+}
+
+.userhand h1 {
+  margin-left: 27px;
+}
+
+.contest h1 {
+  position: absolute;
+  bottom: 37%;
+  letter-spacing: 0.875px;
+}
+
+.contest img{
+  margin-top: 70px;
+}
+
 }

@@ -224,7 +224,7 @@ function clearWinStyles() {
 }
 
 
-
+/*
 
 // Function to randomly select computer's hand in Advance Mode
 function getComputersHand(): HandChoices {
@@ -365,3 +365,5 @@ spockBtn?.addEventListener('click', () => pickUserHands(HandChoices.Spock));
 rocksBtn?.addEventListener('click', () => pickUserHands(HandChoices.Rocks));
 papersBtn?.addEventListener('click', () => pickUserHands(HandChoices.Papers));
 scissorBtn?.addEventListener('click', () => pickUserHands(HandChoices.Scissor));
+
+*/
