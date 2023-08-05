@@ -341,7 +341,7 @@ img{
 }
 
 .advance {
-  display: none;
+  display: flex;
   position: absolute;
   top: 90%;
   left: 2%;
@@ -356,7 +356,8 @@ img{
   font-style: normal;
   font-weight: 600;
   text-transform: uppercase;
-  line-height: normal;
+  align-items: center;
+  justify-content: center;
   letter-spacing: 2.5px;
   cursor: pointer;
 }
@@ -515,12 +516,12 @@ img{
 
 .referee {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 }
 
-.referee h1 {
+.referee p {
   color: #fff;
   text-align: center;
   text-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.20);
@@ -531,18 +532,26 @@ img{
 }
 
 .newGame {
-  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: none;
+  position: absolute;
+  left: 42%;
+  top: 70%;
+  width: 220px;
+  height: 48px;
   border-radius: 8px;
-  text-align: center;
   background: linear-gradient(0deg, #F3F3F3 0%, #FFF 100%);
   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.20);
   color: #3B4262;
+  font-family: Barlow Semi Condensed;
   font-size: 16px;
+  font-style: normal;
   font-weight: 600;
   line-height: normal;
   letter-spacing: 2.5px;
-  cursor: pointer;
-  transition: all 0.15s;
+  
 }
 
 .newGame:hover {
@@ -679,6 +688,12 @@ a {
   height: 48px;
 }
 
+.title .bonus {
+  width: 48.313px;
+  height: 48px;
+  top: 5.7%
+}
+
 .rock, .paper, .scissors {
   width: 130px;
   height: 133px;
@@ -720,10 +735,9 @@ img{
 }
 
 .gameboard {
-  display: flex;
   width: 390px;
   height: 330px;
-  margin-top: 25px;
+  margin-top: 80px;
   margin-left: 20px;
   background-size: 200px;
 }
@@ -735,7 +749,7 @@ img{
 
 .advance-mod {
   top: 90%;
-  left: 40%;
+  left: 35%;
 }
 
 .rules-popup {
@@ -751,9 +765,9 @@ img{
 }
 
 .header img{
- position: absolute;
- top: 420px;
- left: 50%
+  position: absolute;
+  top: 420px;
+  left: 50%
 }
 
 .advance {
@@ -777,7 +791,7 @@ img{
   width: 350px;
   display: flex;
   flex-direction: row;
-  margin-top: -50px;
+  margin-top: -30px;
 }
 
 .contest img{
@@ -786,37 +800,25 @@ img{
 }
 
 .contest h1 {
-color: #FFF;
-text-align: center;
-text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.20);
-font-family: Barlow Semi Condensed;
-font-size: 15px;
-font-style: normal;
-font-weight: 700;
-line-height: 32px; /* 213.333% */
-letter-spacing: 1.875px;
+  color: #FFF;
+  text-align: center;
+  text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.20);
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px; /* 213.333% */
+  letter-spacing: 1.875px;
 }
 
 .referee {
   position: absolute;
-  top: 70%;
-  left: 16%;
-}
-
-.referee h1 {
-  position: absolute;
-  margin-bottom: 32px;
-  margin-left: -92px;
-  font-size: 42px;
-  text-transform: uppercase;
-  font-weight: 700;
-  line-height: normal;
-  width: 300px;
+  left:10%;
+  top: 60%;
 }
 
 .newGame {
-  padding: 10px 24px;
-  margin-left: 50px;
+  margin-left: -70px;
+  margin-top: 20px;
 }
 
 .houseHand {
@@ -834,7 +836,152 @@ letter-spacing: 1.875px;
 }
 
 .contest img{
-  margin-top: 70px;
+  margin-top: 120px;
+}
+
+.advance-gameboard {
+  display: flex;
+  width: 390px;
+  height: 330px;
+  margin-top: 50px;
+  margin-left: 20px;
+  background-size: 200px;
+}
+
+.advance-gameboard img{
+  width: 96px;
+  height: 96px;
+}
+
+.advance-gameboard .scissor{
+  top: 28%;
+  left: 26%;
+}
+
+.advance-gameboard .papers{
+  top: 40%;
+  left: 70%;
+}
+
+.advance-gameboard .spock{
+  top: 40%;
+  left: 10%;
+}
+
+.advance-gameboard .rocks img{
+  bottom: 30%;
+  left: 55%;
+}
+
+.advance-gameboard .lizard{
+  bottom: 29%;
+  left: 23%;
+}
+
+.advance-rules {
+  width: 375px;
+  height: 100vh;
+  top: 0px;
+}
+
+.heading h1{
+  position: absolute;
+  top: -20%;
+  left: 33%
+}
+
+.heading img{
+ position: absolute;
+ top: 450px;
+ left: 50%
+}
+
+.win-style {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 38.3%;
+  left: 73% 
+}
+
+.win-style-1 {
+  display: none;
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background-color: #979797;
+  opacity: 0.02;
+}
+
+.win-style-2 {
+  display: none;
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background-color: #979797;
+  opacity: 0.03;
+}
+
+.win-style-3 {
+  display: none;
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: #979797;
+  opacity: 0.03;
+}
+
+.winstyle {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 39%;
+  left: 27% 
+}
+
+.winstyle-1 {
+  display: none;
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background-color: #979797;
+  opacity: 0.02;
+}
+
+.winstyle-2 {
+  display: none;
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background-color: #979797;
+  opacity: 0.03;
+}
+
+.winstyle-3 {
+  display: none;
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: #979797;
+  opacity: 0.03;
+}
+
+.referee p {
+  color: #FFF;
+  text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.20);
+  font-size: 46px;
+  font-weight: 700;
+  text-transform: uppercase;
+  align-items: center;
+  margin-left: 33px;
 }
 
 }

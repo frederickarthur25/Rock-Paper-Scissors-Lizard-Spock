@@ -84,7 +84,7 @@ function pickUserHand(choices: HandChoice) {
   const winner = determineWinner();
 
   // Display the results
-  const referee = document.querySelector('.referee h1') as HTMLHeadingElement;
+  const referee = document.querySelector('.referee p') as HTMLHeadingElement;
   referee.textContent = winner === 'draw' ? "It's a draw" : `You ${winner === 'hand' ? 'Win' : 'Lose'}`;
   
   // Hide the gameboard
@@ -224,7 +224,6 @@ function clearWinStyles() {
 }
 
 
-/*
 
 // Function to randomly select computer's hand in Advance Mode
 function getComputersHand(): HandChoices {
@@ -275,7 +274,7 @@ function pickUserHands(choice: HandChoices) {
   const winners = determineWinners();
 
   // Display the results
-  const referee = document.querySelector('.referee h1') as HTMLHeadingElement;
+  const referee = document.querySelector('.referee p') as HTMLHeadingElement;
   referee.textContent =
   winners === 'draw' ? "It's a draw" : `You ${winners === 'user' ? 'Win' : 'Lose'}`;
     // Show the win style for the winner, and hide it for the loser
@@ -365,5 +364,3 @@ spockBtn?.addEventListener('click', () => pickUserHands(HandChoices.Spock));
 rocksBtn?.addEventListener('click', () => pickUserHands(HandChoices.Rocks));
 papersBtn?.addEventListener('click', () => pickUserHands(HandChoices.Papers));
 scissorBtn?.addEventListener('click', () => pickUserHands(HandChoices.Scissor));
-
-*/

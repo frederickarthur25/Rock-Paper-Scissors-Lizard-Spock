@@ -77,7 +77,7 @@ function pickUserHand(choices) {
     computerChoice = getComputerHand();
     var winner = determineWinner();
     // Display the results
-    var referee = document.querySelector('.referee h1');
+    var referee = document.querySelector('.referee p');
     referee.textContent = winner === 'draw' ? "It's a draw" : "You ".concat(winner === 'hand' ? 'Win' : 'Lose');
     // Hide the gameboard
     var gameboard = document.querySelector('.gameboard');
@@ -186,146 +186,129 @@ function clearWinStyles() {
     winStyle22.style.display = 'none';
     winStyle33.style.display = 'none';
 }
-/*
-
+// Clear scores on browser close
+window.addEventListener('beforeunload', function () {
+    localStorage.removeItem('userScore');
+    localStorage.removeItem('usersScore');
+});
 // Function to randomly select computer's hand in Advance Mode
-function getComputersHand(): HandChoices {
-  const choice: HandChoices[] = [
-    HandChoices.Rocks,
-    HandChoices.Papers,
-    HandChoices.Scissor,
-  ];
-  const randomIndex = Math.floor(Math.random() * choice.length);
-  return choice[randomIndex];
+function getComputersHand() {
+    var choice = [
+        HandChoices.Rocks,
+        HandChoices.Papers,
+        HandChoices.Scissor,
+    ];
+    var randomIndex = Math.floor(Math.random() * choice.length);
+    return choice[randomIndex];
 }
-
 // Function to determine the winner and update scores of Advance Mode
 function determineWinners() {
-  if (userChoices === computerChoices) {
-    // It's a draw
-    clearWinStyles();
-    return 'draw';
-  }if (
-    (userChoices === HandChoices.Rocks &&
-      (computerChoices === HandChoices.Scissor || computerChoices === HandChoices.Lizard)) ||
-    (userChoices === HandChoices.Papers &&
-      (computerChoices === HandChoices.Rocks || computerChoices === HandChoices.Spock)) ||
-    (userChoices === HandChoices.Scissor &&
-      (computerChoices === HandChoices.Papers || computerChoices === HandChoices.Lizard)) ||
-    (userChoices === HandChoices.Lizard &&
-      (computerChoices === HandChoices.Papers || computerChoices === HandChoices.Spock)) ||
-    (userChoices === HandChoices.Spock &&
-      (computerChoices === HandChoices.Rocks || computerChoices === HandChoices.Scissor))
-  ) {
-    // User wins
-    usersScore++;
-    localStorage.setItem('userScore', userScore.toString());
-    applyWinStyles();
-    return 'user';
-  } else {
-    // Computer wins
-    applyHouseWinStyles();
-   
-    return 'house';
-  }
+    if (userChoices === computerChoices) {
+        // It's a draw
+        clearWinStyles();
+        return 'draw';
+    }
+    if ((userChoices === HandChoices.Rocks &&
+        (computerChoices === HandChoices.Scissor || computerChoices === HandChoices.Lizard)) ||
+        (userChoices === HandChoices.Papers &&
+            (computerChoices === HandChoices.Rocks || computerChoices === HandChoices.Spock)) ||
+        (userChoices === HandChoices.Scissor &&
+            (computerChoices === HandChoices.Papers || computerChoices === HandChoices.Lizard)) ||
+        (userChoices === HandChoices.Lizard &&
+            (computerChoices === HandChoices.Papers || computerChoices === HandChoices.Spock)) ||
+        (userChoices === HandChoices.Spock &&
+            (computerChoices === HandChoices.Rocks || computerChoices === HandChoices.Scissor))) {
+        // User wins
+        usersScore++;
+        localStorage.setItem('userScore', userScore.toString());
+        applyWinStyles();
+        return 'user';
+    }
+    else {
+        // Computer wins
+        applyHouseWinStyles();
+        return 'house';
+    }
 }
-
 // Function to handle user's hand selection for Advance Mode
-function pickUserHands(choice: HandChoices) {
-  userChoices = choice;
-  computerChoices = getComputersHand();
-  const winners = determineWinners();
-
-  // Display the results
-  const referee = document.querySelector('.referee h1') as HTMLHeadingElement;
-  referee.textContent =
-  winners === 'draw' ? "It's a draw" : `You ${winners === 'user' ? 'Win' : 'Lose'}`;
+function pickUserHands(choice) {
+    userChoices = choice;
+    computerChoices = getComputersHand();
+    var winners = determineWinners();
+    // Display the results
+    var referee = document.querySelector('.referee p');
+    referee.textContent =
+        winners === 'draw' ? "It's a draw" : "You ".concat(winners === 'user' ? 'Win' : 'Lose');
     // Show the win style for the winner, and hide it for the loser
-  
-  // Show the gameboard
-  const gameboard = document.querySelector('.gameboard') as HTMLElement;
-  gameboard.style.display = 'none';
-  advanceGameboard.style.display = 'none'
-
-  // Show the contest section
-  const contest = document.querySelector('.contest') as HTMLElement;
-  contest.style.display = 'flex';
-
-  // Update the UI
-  updateUIs();
+    // Show the gameboard
+    var gameboard = document.querySelector('.gameboard');
+    gameboard.style.display = 'none';
+    advanceGameboard.style.display = 'none';
+    // Show the contest section
+    var contest = document.querySelector('.contest');
+    contest.style.display = 'flex';
+    // Update the UI
+    updateUIs();
 }
-
-
 // Function to show the advance rules popup
 function showAdvanceRulesPopup() {
-  advanceRules.style.display = 'flex';
-  gameboard.style.pointerEvents = 'none';
-  advanceButton.style.pointerEvents = 'none';
-  advanceMod.style.pointerEvents = 'none';
+    advanceRules.style.display = 'flex';
+    gameboard.style.pointerEvents = 'none';
+    advanceButton.style.pointerEvents = 'none';
+    advanceMod.style.pointerEvents = 'none';
 }
-
-
 // Function to close the advance rules popup
 function closeAdvanceRules() {
-  advanceRules.style.display = 'none';
-  gameboard.style.pointerEvents = 'auto';
-  advanceButton.style.pointerEvents = 'auto';
-  advanceMod.style.pointerEvents = 'auto';
-}
-
-// Event listener for the "Advance Mode" button
-advanceButton?.addEventListener('click', () => {
-  if (advanceButton.textContent === 'BASIC MODE') {
-    // Exit Advance Mode
-    gameboard.style.display = 'flex';
-    advanceGameboard.style.display = 'none';
-    title.style.display = 'flex';
-    bonus.style.display = 'none';
-    advanceMod.style.display = 'none';
-    advanceButton.textContent = 'ADVANCE MODE'; // Update the text content of the button
-    const rulesButton = document.querySelector('.rules') as HTMLElement;
-    rulesButton.style.display = 'flex';
-    rulesButton.style.pointerEvents = 'auto';
+    advanceRules.style.display = 'none';
+    gameboard.style.pointerEvents = 'auto';
     advanceButton.style.pointerEvents = 'auto';
-    contest.style.display = 'none';
-  } else {
-    // Enter Advance Mode
-    gameboard.style.display = 'none';
-    advanceGameboard.style.display = 'flex';
-    title.style.display = 'none';
-    bonus.style.display = 'flex';
-    advanceMod.style.display = 'flex';
-    rulesPopup.style.display = 'none';
-    const rulesButton = document.querySelector('.rules') as HTMLElement;
-    rulesButton.style.display = 'none';
-    rulesButton.style.pointerEvents = 'none';
-    contest.style.display = 'none';
-    advanceButton.textContent = 'BASIC MODE'; // Update the text content of the button
-  }
-  clearWinStyles();
+    advanceMod.style.pointerEvents = 'auto';
+}
+// Event listener for the "Advance Mode" button
+advanceButton === null || advanceButton === void 0 ? void 0 : advanceButton.addEventListener('click', function () {
+    if (advanceButton.textContent === 'BASIC MODE') {
+        // Exit Advance Mode
+        gameboard.style.display = 'flex';
+        advanceGameboard.style.display = 'none';
+        title.style.display = 'flex';
+        bonus.style.display = 'none';
+        advanceMod.style.display = 'none';
+        advanceButton.textContent = 'ADVANCE MODE'; // Update the text content of the button
+        var rulesButton_1 = document.querySelector('.rules');
+        rulesButton_1.style.display = 'flex';
+        rulesButton_1.style.pointerEvents = 'auto';
+        advanceButton.style.pointerEvents = 'auto';
+        contest.style.display = 'none';
+    }
+    else {
+        // Enter Advance Mode
+        gameboard.style.display = 'none';
+        advanceGameboard.style.display = 'flex';
+        title.style.display = 'none';
+        bonus.style.display = 'flex';
+        advanceMod.style.display = 'flex';
+        rulesPopup.style.display = 'none';
+        var rulesButton_2 = document.querySelector('.rules');
+        rulesButton_2.style.display = 'none';
+        rulesButton_2.style.pointerEvents = 'none';
+        contest.style.display = 'none';
+        advanceButton.textContent = 'BASIC MODE'; // Update the text content of the button
+    }
+    clearWinStyles();
 });
-
-
 // Event listener for the rules button in advance game mode
-advanceMod?.addEventListener('click', showAdvanceRulesPopup);
-
+advanceMod === null || advanceMod === void 0 ? void 0 : advanceMod.addEventListener('click', showAdvanceRulesPopup);
 // Event listener for the close button in advance rules popup
-const closeRulesButton = document.querySelector('.heading img');
-closeRulesButton?.addEventListener('click', closeAdvanceRules);
-
+var closeRulesButton = document.querySelector('.heading img');
+closeRulesButton === null || closeRulesButton === void 0 ? void 0 : closeRulesButton.addEventListener('click', closeAdvanceRules);
 // Event listeners for hand selections in advance game mode
-const lizardBtn = document.querySelector('.lizard img');
-const spockBtn = document.querySelector('.spock img');
-const rocksBtn = document.querySelector('.rocks img');
-const papersBtn = document.querySelector('.papers img');
-const scissorBtn = document.querySelector('.scissor img');
-
-
-
-lizardBtn?.addEventListener('click', () => pickUserHands(HandChoices.Lizard));
-spockBtn?.addEventListener('click', () => pickUserHands(HandChoices.Spock));
-rocksBtn?.addEventListener('click', () => pickUserHands(HandChoices.Rocks));
-papersBtn?.addEventListener('click', () => pickUserHands(HandChoices.Papers));
-scissorBtn?.addEventListener('click', () => pickUserHands(HandChoices.Scissor));
-
-*/ 
+var lizardBtn = document.querySelector('.lizard img');
+var spockBtn = document.querySelector('.spock img');
+var rocksBtn = document.querySelector('.rocks img');
+var papersBtn = document.querySelector('.papers img');
+var scissorBtn = document.querySelector('.scissor img');
+lizardBtn === null || lizardBtn === void 0 ? void 0 : lizardBtn.addEventListener('click', function () { return pickUserHands(HandChoices.Lizard); });
+spockBtn === null || spockBtn === void 0 ? void 0 : spockBtn.addEventListener('click', function () { return pickUserHands(HandChoices.Spock); });
+rocksBtn === null || rocksBtn === void 0 ? void 0 : rocksBtn.addEventListener('click', function () { return pickUserHands(HandChoices.Rocks); });
+papersBtn === null || papersBtn === void 0 ? void 0 : papersBtn.addEventListener('click', function () { return pickUserHands(HandChoices.Papers); });
+scissorBtn === null || scissorBtn === void 0 ? void 0 : scissorBtn.addEventListener('click', function () { return pickUserHands(HandChoices.Scissor); });
