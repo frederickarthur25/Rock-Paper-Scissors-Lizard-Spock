@@ -35,7 +35,7 @@ enum HandChoices {
 }
 
 let userScore: number = parseInt(localStorage.getItem('userScore') || '0');
-let usersScore: number = parseInt(localStorage.getItem('userScore') || '0');
+let usersScore: number = parseInt(localStorage.getItem('usersScore') || '0');
 let userChoice: HandChoice;
 let computerChoice: HandChoice;
 let userChoices: HandChoices;
@@ -256,7 +256,7 @@ function determineWinners() {
   ) {
     // User wins
     usersScore++;
-    localStorage.setItem('userScore', userScore.toString());
+    localStorage.setItem('usersScore', usersScore.toString());
     applyWinStyles();
     return 'user';
   } else {

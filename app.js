@@ -34,7 +34,7 @@ var HandChoices;
     HandChoices["Spock"] = "icon-spock.svg";
 })(HandChoices || (HandChoices = {}));
 var userScore = parseInt(localStorage.getItem('userScore') || '0');
-var usersScore = parseInt(localStorage.getItem('userScore') || '0');
+var usersScore = parseInt(localStorage.getItem('usersScore') || '0');
 var userChoice;
 var computerChoice;
 var userChoices;
@@ -186,11 +186,6 @@ function clearWinStyles() {
     winStyle22.style.display = 'none';
     winStyle33.style.display = 'none';
 }
-// Clear scores on browser close
-window.addEventListener('beforeunload', function () {
-    localStorage.removeItem('userScore');
-    localStorage.removeItem('usersScore');
-});
 // Function to randomly select computer's hand in Advance Mode
 function getComputersHand() {
     var choice = [
@@ -220,7 +215,7 @@ function determineWinners() {
             (computerChoices === HandChoices.Rocks || computerChoices === HandChoices.Scissor))) {
         // User wins
         usersScore++;
-        localStorage.setItem('userScore', userScore.toString());
+        localStorage.setItem('usersScore', usersScore.toString());
         applyWinStyles();
         return 'user';
     }
