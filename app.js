@@ -61,7 +61,6 @@ function determineWinner() {
         (userChoice === HandChoice.Scissors && computerChoice === HandChoice.Paper)) {
         // User wins
         userScore++;
-        localStorage.setItem('userScore', userScore.toString());
         applyWinStyles();
         return 'hand';
     }
@@ -92,6 +91,17 @@ function pickUserHand(choices) {
     referee.textContent =
         winner === 'draw' ? "It's a draw" : "You ".concat(winner === 'hand' ? 'Win' : 'Lose');
     updateUI();
+    updateLocalStorage();
+}
+// Load the scores from localStorage on page load
+window.addEventListener('DOMContentLoaded', function () {
+    userScore = parseInt(localStorage.getItem('userScore') || '0', 10);
+    usersScore = parseInt(localStorage.getItem('usersScore') || '0', 10);
+    updateUI();
+});
+function updateLocalStorage() {
+    localStorage.setItem('userScore', userScore.toString());
+    localStorage.setItem('usersScore', usersScore.toString());
 }
 // Function to update the game UI Basic Mode
 function updateUI() {
@@ -215,7 +225,6 @@ function determineWinners() {
             (computerChoices === HandChoices.Rocks || computerChoices === HandChoices.Scissor))) {
         // User wins
         usersScore++;
-        localStorage.setItem('usersScore', usersScore.toString());
         applyWinStyles();
         return 'user';
     }
@@ -244,6 +253,7 @@ function pickUserHands(choice) {
     contest.style.display = 'flex';
     // Update the UI
     updateUIs();
+    updateLocalStorage();
 }
 // Function to show the advance rules popup
 function showAdvanceRulesPopup() {

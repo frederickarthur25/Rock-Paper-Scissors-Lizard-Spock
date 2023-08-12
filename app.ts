@@ -66,7 +66,6 @@ function determineWinner() {
   ) {
     // User wins
     userScore++;
-    localStorage.setItem('userScore', userScore.toString());
     applyWinStyles();
     return 'hand';
   } else {
@@ -104,10 +103,23 @@ function pickUserHand(choices: HandChoice) {
   // Display the results in the referee section
   referee.style.display = 'flex';
   referee.textContent =
-    winner === 'draw' ? "It's a draw" : `You ${winner === 'hand' ? 'Win' : 'Lose'}`;
+  winner === 'draw' ? "It's a draw" : `You ${winner === 'hand' ? 'Win' : 'Lose'}`;
 
     updateUI();
+    updateLocalStorage();
+}
 
+// Load the scores from localStorage on page load
+window.addEventListener('DOMContentLoaded', () => {
+  userScore = parseInt(localStorage.getItem('userScore') || '0', 10);
+  usersScore = parseInt(localStorage.getItem('usersScore') || '0', 10);
+  updateUI();
+});
+
+
+function updateLocalStorage() {
+  localStorage.setItem('userScore', userScore.toString());
+  localStorage.setItem('usersScore', usersScore.toString());
 }
 
 
@@ -256,7 +268,6 @@ function determineWinners() {
   ) {
     // User wins
     usersScore++;
-    localStorage.setItem('usersScore', usersScore.toString());
     applyWinStyles();
     return 'user';
   } else {
@@ -290,6 +301,7 @@ function pickUserHands(choice: HandChoices) {
 
   // Update the UI
   updateUIs();
+  updateLocalStorage();
 }
 
 
