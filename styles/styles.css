@@ -789,7 +789,7 @@ img{
 
 .contest {
   width: 350px;
-  display: flex;
+  display: none;
   flex-direction: row;
   margin-top: -30px;
 }
@@ -840,7 +840,7 @@ img{
 }
 
 .advance-gameboard {
-  display: flex;
+  display: none;
   width: 390px;
   height: 330px;
   margin-top: 50px;
@@ -898,7 +898,7 @@ img{
 
 .win-style {
   position: absolute;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   top: 38.3%;
@@ -937,7 +937,7 @@ img{
 
 .winstyle {
   position: absolute;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   top: 39%;

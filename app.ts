@@ -34,8 +34,8 @@ enum HandChoices {
   Spock = 'icon-spock.svg',
 }
 
-let userScore: number = parseInt(localStorage.getItem('userScore') || '0');
-let usersScore: number = parseInt(localStorage.getItem('usersScore') || '0');
+let userScore: number = parseInt(localStorage.getItem('userScore') || '0', 10);
+let usersScore: number = parseInt(localStorage.getItem('usersScore') || '0', 10);
 let userChoice: HandChoice;
 let computerChoice: HandChoice;
 let userChoices: HandChoices;
