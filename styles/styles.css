@@ -975,13 +975,15 @@ img{
 }
 
 .referee p {
+  display: flex;
+  align-items: center;
   color: #FFF;
   text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.20);
   font-size: 46px;
   font-weight: 700;
   text-transform: uppercase;
   align-items: center;
-  margin-left: 33px;
+  margin-left: 90px;
 }
 
 }
