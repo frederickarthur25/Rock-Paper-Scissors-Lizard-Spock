@@ -37,7 +37,23 @@ var updateScore = function (result) {
         score.userScore -= 1;
         applyHouseWinStyles();
     }
+    var gameData = {
+        userScore: score.userScore,
+        usersScore: outcome.usersScore,
+    };
+    localStorage.setItem('gameData', JSON.stringify(gameData));
 };
+//save the game to local storage
+window.addEventListener('load', function () {
+    var savedGame = localStorage.getItem('gameData');
+    if (savedGame !== null) {
+        var parsedGameData = JSON.parse(savedGame);
+        score.userScore = parsedGameData.userScore;
+        outcome.usersScore = parsedGameData.usersScore;
+        userScoreElement.textContent = score.userScore.toString();
+        usersScoreElement.textContent = outcome.usersScore.toString();
+    }
+});
 var playGame = function (userChoice) {
     var computerChoice = getRandomChoice();
     var result = determineResult(userChoice, computerChoice);
@@ -125,13 +141,9 @@ var pickUserHand = function (userChoice) {
     // Display contest section
     var contest = document.querySelector('.contest');
     contest.style.display = 'flex';
-    updateUI();
-};
-function updateUI() {
-    // Update user score display
-    var userScoreElement = document.getElementById('userScore');
+    //Display the current score
     userScoreElement.textContent = score.userScore.toString();
-}
+};
 function restartGame() {
     // Hide the contest section
     var contest = document.querySelector('.contest');
@@ -241,6 +253,11 @@ var updateResult = function (result) {
         outcome.usersScore -= 1;
         applyHouseWinStyles();
     }
+    var gameData = {
+        userScore: score.userScore,
+        usersScore: outcome.usersScore,
+    };
+    localStorage.setItem('gameData', JSON.stringify(gameData));
 };
 var play = function (usersChoice) {
     var computersChoice = randomChoice();

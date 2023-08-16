@@ -11,6 +11,14 @@ const contest = document.querySelector('.contest') as HTMLElement;
 const usersScoreElement = document.getElementById('usersScore') as HTMLHeadingElement;
 const userScoreElement = document.getElementById('userScore') as HTMLHeadingElement;
 
+
+//storing the scores in a type to pass to local storage
+type GameData = {
+  userScore: number;
+  usersScore: number;
+};
+
+
 type Choice = "rock" | "paper" | "scissors";
 type Result = "win" | "lose" | "draw";
 
@@ -56,9 +64,26 @@ const updateScore = (result: Result): void => {
     score.userScore -= 1;
     applyHouseWinStyles()
   }
+
+  const gameData: GameData = {
+    userScore: score.userScore,
+    usersScore: outcome.usersScore,
+  };
+  localStorage.setItem('gameData', JSON.stringify(gameData));
 };
 
 
+//save the game to local storage
+window.addEventListener('load', () => {
+  const savedGame = localStorage.getItem('gameData');
+  if (savedGame !== null) {
+    const parsedGameData: GameData = JSON.parse(savedGame);
+    score.userScore = parsedGameData.userScore;
+    outcome.usersScore = parsedGameData.usersScore;
+    userScoreElement.textContent = score.userScore.toString();
+    usersScoreElement.textContent = outcome.usersScore.toString();
+  }
+});
 
 
 const playGame = (userChoice: Choice): GameState => {
@@ -159,15 +184,12 @@ computerPickImage.src = `images/icon-${gameState.computerChoice}.svg`;
   const contest = document.querySelector('.contest') as HTMLElement;
   contest.style.display = 'flex';
 
-  updateUI()
+  //Display the current score
+  userScoreElement.textContent = score.userScore.toString();
 };
 
 
-function updateUI() {
-  // Update user score display
-  const userScoreElement = document.getElementById('userScore') as HTMLHeadingElement;
-  userScoreElement.textContent = score.userScore.toString();
-}
+
 
 function restartGame() {
   // Hide the contest section
@@ -315,6 +337,12 @@ const updateResult = (result: Results): void => {
     outcome.usersScore -= 1;
     applyHouseWinStyles()
   }
+
+  const gameData: GameData = {
+    userScore: score.userScore,
+    usersScore: outcome.usersScore,
+  };
+  localStorage.setItem('gameData', JSON.stringify(gameData));
 };
 
 
