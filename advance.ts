@@ -8,7 +8,7 @@ const title = document.querySelector('.title img') as HTMLElement;
 const advanceGameboard = document.querySelector('.advance-gameboard') as HTMLElement;
 const rulesPopup = document.querySelector('.rules-popup') as HTMLElement;
 const contest = document.querySelector('.contest') as HTMLElement;
-const usersScoreElement = document.querySelector('.score h1') as HTMLHeadingElement;
+const usersScoreElement = document.getElementById('usersScore') as HTMLHeadingElement;
 
 type Choice = "rock" | "paper" | "scissors";
 type Result = "win" | "lose" | "draw";
@@ -101,6 +101,8 @@ advanceModeButton.addEventListener("click", () => {
     rulesButton.style.display = 'none';
     rulesButton.style.pointerEvents = 'none';
     contest.style.display = 'none';
+    usersScoreElement.style.display = 'flex'
+    userScoreElement.style.display = 'none'
   } else {
     toggleGameMode("advance");
     advanceModeButton.textContent = "Advance";
@@ -114,6 +116,8 @@ advanceModeButton.addEventListener("click", () => {
     rulesButton.style.pointerEvents = 'auto';
     advanceButton.style.pointerEvents = 'auto';
     contest.style.display = 'none';
+    usersScoreElement.style.display = 'none'
+    userScoreElement.style.display = 'flex'
   }
   clearWinStyles();
 });
@@ -304,8 +308,10 @@ const determineWinner = (usersChoice: handChoice, computersChoice: handChoice): 
 const updateResult = (result: Results): void => {
   if (result === "win") {
     outcome.usersScore += 1;
+    applyWinStyles()
   } else if (result === "lose") {
     outcome.usersScore -= 1;
+    applyHouseWinStyles()
   }
 };
 
@@ -357,7 +363,6 @@ computerPickImage.src = `images/icon-${gameType.computersChoice}.svg`;
   contest.style.display = 'flex';
 
   // Update user score display
-  const usersScoreElement = document.getElementById('userScore') as HTMLHeadingElement;
   usersScoreElement.textContent = outcome.usersScore.toString();
 };
 

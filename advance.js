@@ -8,7 +8,7 @@ var title = document.querySelector('.title img');
 var advanceGameboard = document.querySelector('.advance-gameboard');
 var rulesPopup = document.querySelector('.rules-popup');
 var contest = document.querySelector('.contest');
-var usersScoreElement = document.querySelector('.score h1');
+var usersScoreElement = document.getElementById('usersScore');
 var score = {
     userScore: 0,
 };
@@ -76,6 +76,8 @@ advanceModeButton.addEventListener("click", function () {
         rulesButton_1.style.display = 'none';
         rulesButton_1.style.pointerEvents = 'none';
         contest.style.display = 'none';
+        usersScoreElement.style.display = 'flex';
+        userScoreElement.style.display = 'none';
     }
     else {
         toggleGameMode("advance");
@@ -90,6 +92,8 @@ advanceModeButton.addEventListener("click", function () {
         rulesButton_2.style.pointerEvents = 'auto';
         advanceButton.style.pointerEvents = 'auto';
         contest.style.display = 'none';
+        usersScoreElement.style.display = 'none';
+        userScoreElement.style.display = 'flex';
     }
     clearWinStyles();
 });
@@ -231,9 +235,11 @@ var determineWinner = function (usersChoice, computersChoice) {
 var updateResult = function (result) {
     if (result === "win") {
         outcome.usersScore += 1;
+        applyWinStyles();
     }
     else if (result === "lose") {
         outcome.usersScore -= 1;
+        applyHouseWinStyles();
     }
 };
 var play = function (usersChoice) {
@@ -275,7 +281,6 @@ var pickUserHands = function (usersChoice) {
     var contest = document.querySelector('.contest');
     contest.style.display = 'flex';
     // Update user score display
-    var usersScoreElement = document.getElementById('userScore');
     usersScoreElement.textContent = outcome.usersScore.toString();
 };
 // Function to show the advance rules popup
