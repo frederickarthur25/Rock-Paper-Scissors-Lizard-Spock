@@ -9,6 +9,7 @@ const advanceGameboard = document.querySelector('.advance-gameboard') as HTMLEle
 const rulesPopup = document.querySelector('.rules-popup') as HTMLElement;
 const contest = document.querySelector('.contest') as HTMLElement;
 const usersScoreElement = document.getElementById('usersScore') as HTMLHeadingElement;
+const userScoreElement = document.getElementById('userScore') as HTMLHeadingElement;
 
 type Choice = "rock" | "paper" | "scissors";
 type Result = "win" | "lose" | "draw";
@@ -35,7 +36,8 @@ const getRandomChoice = (): Choice => {
 };
 
 const determineResult = (userChoice: Choice, computerChoice: Choice): Result => {
-  if (userChoice === computerChoice) return "draw";
+  if (userChoice === computerChoice) 
+    return "draw";
   if (
     (userChoice === "rock" && computerChoice === "scissors") ||
     (userChoice === "paper" && computerChoice === "rock") ||
@@ -56,7 +58,7 @@ const updateScore = (result: Result): void => {
   }
 };
 
-const userScoreElement = document.querySelector('.score h1') as HTMLHeadingElement;
+
 
 
 const playGame = (userChoice: Choice): GameState => {

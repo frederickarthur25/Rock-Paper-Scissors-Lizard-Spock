@@ -9,6 +9,7 @@ var advanceGameboard = document.querySelector('.advance-gameboard');
 var rulesPopup = document.querySelector('.rules-popup');
 var contest = document.querySelector('.contest');
 var usersScoreElement = document.getElementById('usersScore');
+var userScoreElement = document.getElementById('userScore');
 var score = {
     userScore: 0,
 };
@@ -37,7 +38,6 @@ var updateScore = function (result) {
         applyHouseWinStyles();
     }
 };
-var userScoreElement = document.querySelector('.score h1');
 var playGame = function (userChoice) {
     var computerChoice = getRandomChoice();
     var result = determineResult(userChoice, computerChoice);
