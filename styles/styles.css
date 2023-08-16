@@ -565,7 +565,7 @@ img{
 }
 
 .attribution { 
-  display: none;
+  display: flex;
   font-size: 14px; 
   text-align: center; 
   color: white
@@ -576,7 +576,7 @@ a {
 }
 
 .attribution a { 
-    color: hsl(228, 45%, 44%); 
+    color: hsl(0, 45%, 44%); 
 }
 
 .win-style {
@@ -980,15 +980,18 @@ img{
 }
 
 .referee p {
-  display: flex;
-  align-items: center;
-  color: #FFF;
-  text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.20);
   font-size: 46px;
-  font-weight: 700;
   text-transform: uppercase;
-  align-items: center;
-  margin-left: 90px;
+  margin-left: 60px;
+}
+
+
+.attribution { 
+  position: absolute;
+  bottom: 0;
+  font-size: 14px; 
+  text-align: center; 
+  color: white
 }
 
 }
